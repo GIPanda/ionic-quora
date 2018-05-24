@@ -11,6 +11,7 @@ import { NotificationPage } from '../pages/notification/notification';
 import { MorePage } from '../pages/more/more';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,12 +27,15 @@ import { IonicStorageModule } from '@ionic/storage';
     NotificationPage,
     MorePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: 'Back'
+    }),
     IonicStorageModule.forRoot(),    
   ],
   bootstrap: [IonicApp],
@@ -43,7 +47,8 @@ import { IonicStorageModule } from '@ionic/storage';
     NotificationPage,
     MorePage,    
     TabsPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

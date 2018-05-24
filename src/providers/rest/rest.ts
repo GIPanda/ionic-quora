@@ -48,6 +48,18 @@ export class RestProvider {
   login(mobile, password): Observable<any> {
     return this.get(`${this.apiUrlLogin}?mobile=${mobile}&password=${password}`);
   }
+  /**
+   * Register user
+   * 
+   * @param {any} mobile 
+   * @param {any} nickname 
+   * @param {any} password 
+   * @returns {Observable<any>} 
+   * @memberof RestProvider
+   */
+  register(mobile, nickname, password): Observable<any> {
+    return this.get(`${this.apiUrlRegister}?mobile=${mobile}&nickname=${nickname}&password=${password}`)
+  }
 
   /**
    * Global HTTP request method

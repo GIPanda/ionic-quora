@@ -20,22 +20,23 @@
 
 
 <ion-content>
-<ion-list>
-  <ion-item>
-    <ion-label stacked>Mobile Phone</ion-label>
-    <ion-input type="text" [(ngModel)]="mobile"></ion-input>
-  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Mobile Phone</ion-label>
+      <ion-input type="text" [(ngModel)]="mobile"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label stacked>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
-  </ion-item>  
-</ion-list>
-<div padding>
-  <button ion-button color="primary" block small (click)="login()"> Sign in</button>
-</div>
-<div padding text-center>
-  <button ion-button color="primary" outline> New to quora ? Create an account</button>  
-</div>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>  
+  </ion-list>
 
+  <div padding>
+    <button ion-button color="primary" block (click)="login()">Sign in</button>
+  </div>
+
+  <div padding text-center>
+    <button ion-button color="primary" outline (click)="pushRegisterPage()">New to quora ? Create an account</button>  
+  </div>
 </ion-content>
