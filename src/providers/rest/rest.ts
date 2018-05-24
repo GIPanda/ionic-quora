@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -37,7 +37,15 @@ export class RestProvider {
   constructor(public http: HttpClient) {
   }
 
-  login(mobile, password): Observable<Object> {
+  /**
+   * Login by mobile phone and password
+   * 
+   * @param {any} mobile 
+   * @param {any} password 
+   * @returns {Observable<any>} 
+   * @memberof RestProvider
+   */
+  login(mobile, password): Observable<any> {
     return this.get(`${this.apiUrlLogin}?mobile=${mobile}&password=${password}`);
   }
 
@@ -46,19 +54,23 @@ export class RestProvider {
    * @Dongjie LIU
    * @private
    * @param {string} url 
-   * @returns {Observable<Object>} 
+   * @returns {Observable<any>} 
    * @memberof RestProvider
    */
-  private get(url: string): Observable<Object> {
+  private get(url: string): Observable<any> {
     return this.http.get(url)
       .map(res => JSON.parse(res.toString()))
       .catch(this.handleError);
   }
 
-  private extractData(res: HttpResponse<any>) {
-    return JSON.parse(res.toString()) || {};
-  }
-
+  /**
+   * Handle http error response and display in error console
+   * 
+   * @private
+   * @param {(HttpErrorResponse | any)} error 
+   * @returns 
+   * @memberof RestProvider
+   */
   private handleError(error: HttpErrorResponse | any) {
     let errMsg: string;
     if (error instanceof HttpErrorResponse) {

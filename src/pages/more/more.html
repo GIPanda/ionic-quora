@@ -14,12 +14,24 @@
 
 
 <ion-content>
-  <ion-card>
-    <ion-card-header text-center>
-      Sign in Ionic quora
-    </ion-card-header>
-    <ion-card-content text-center>
-      <button ion-button outline small (click)="showModal()">Sign in / Sign up</button>
-    </ion-card-content>
-  </ion-card>
+  
+  <div *ngIf="isLoggedIn; else loginHint">
+    <ion-card>
+      <ion-card-content text-center>
+        <button ion-button outline small (click)="showModal()">LoggedIn</button>
+      </ion-card-content>
+    </ion-card>    
+  </div>
+
+  <ng-template #loginHint>
+    <ion-card>
+      <ion-card-header text-center>
+        Sign in Ionic quora
+      </ion-card-header>
+      <ion-card-content text-center>
+        <button ion-button outline small (click)="showModal()">Sign in / Sign up</button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+  
 </ion-content>

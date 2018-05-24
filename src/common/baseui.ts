@@ -1,18 +1,42 @@
 import { Loading, LoadingController, ToastController, Toast } from 'ionic-angular';
-
+/**
+ * Class of shared ui components
+ * 
+ * @export
+ * @abstract
+ * @class BaseUI
+ */
 export abstract class BaseUI {
-  constructor() {}
+  constructor() { }
 
+  /**
+   * Common loading present component
+   * 
+   * @protected
+   * @param {LoadingController} loadingCtrl 
+   * @param {string} message 
+   * @returns {Loading} 
+   * @memberof BaseUI
+   */
   protected showLoading(loadingCtrl: LoadingController, message: string): Loading {
     let loader = loadingCtrl.create({
       content: message,
-      duration: 3000,      
+      duration: 3000,
       dismissOnPageChange: true
     });
     loader.present();
     return loader;
   }
-
+  
+  /**
+   * Common toast present component
+   * 
+   * @protected
+   * @param {ToastController} toastCtrl 
+   * @param {string} message 
+   * @returns {Toast} 
+   * @memberof BaseUI
+   */
   protected showToast(toastCtrl: ToastController, message: string): Toast {
     let toast = toastCtrl.create({
       message: message,

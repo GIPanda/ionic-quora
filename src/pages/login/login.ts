@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { 
-  IonicPage, 
+import {
+  IonicPage,
   NavController,
   NavParams,
   ViewController,
   LoadingController,
-  ToastController } from 'ionic-angular';
+  ToastController
+} from 'ionic-angular';
 import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
+import { Storage } from '@ionic/storage'
 
 /**
  * Generated class for the LoginPage page.
@@ -28,13 +30,14 @@ export class LoginPage extends BaseUI {
   errorMessage: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
-    public rest: RestProvider) {
-      super();
+    public rest: RestProvider,
+    public storage: Storage) {
+    super();
   }
 
   ionViewDidLoad() {
@@ -45,16 +48,24 @@ export class LoginPage extends BaseUI {
     const loading = super.showLoading(this.loadingCtrl, "Please wait ...");
     this.rest.login(this.mobile, this.password)
       .subscribe(res => {
-        if(res.Status == "OK") {
-
+        if (res.Status == "OK") {
+          //@todo save token
+          this.storage.set('UserId', res.UserId);
+          loading.dismiss();
+          this.dismiss();
         } else {
           loading.dismiss();
           super.showToast(this.toastCtrl, res.StatusContent);
         }
       },
-      error => this.errorMessage = <any>error);
+        error => this.errorMessage = <any>error);
   }
 
+  /**
+   * Close current page  
+   * 
+   * @memberof LoginPage
+   */
   dismiss() {
     this.viewCtrl.dismiss();
   }
