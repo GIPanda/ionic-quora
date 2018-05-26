@@ -61,6 +61,10 @@ export class RestProvider {
     return this.get(`${this.apiUrlRegister}?mobile=${mobile}&nickname=${nickname}&password=${password}`)
   }
 
+  getUserInfo(userId): Observable<any> {
+    return this.get(`${this.apiUrlUserInfo}?userid=${userId}`)
+  }
+
   /**
    * Global HTTP request method
    * @Dongjie LIU

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
+import { BaseUI } from '../../common/baseui';
+import { RestProvider } from '../../providers/rest/rest';
+import { User } from '../../app/domains/user.model';
 
 /**
  * Generated class for the MorePage page.
@@ -15,19 +18,27 @@ import { Storage } from '@ionic/storage';
   selector: 'page-more',
   templateUrl: 'more.html',
 })
-export class MorePage {
+export class MorePage extends BaseUI{
 
-  public isLoggedIn: boolean = false;
+  isLoggedIn: boolean = false;
+  avatarSrc: string;
+  userInfo: User = {};
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    public loadCtrl: LoadingController,
+    public rest: RestProvider,
     public storage: Storage) {
+      super();
   }
 
   showModal() {
     let modal = this.modalCtrl.create(LoginPage);
+    modal.onWillDismiss(data => {
+      this.loadUserPage();
+    });    
     modal.present();
   }
 
@@ -38,6 +49,17 @@ export class MorePage {
   loadUserPage() {
     this.storage.get('UserId').then(val => {
       if (val !== null) {
+        let loading = super.showLoading(this.loadCtrl);
+        this.rest.getUserInfo(val).subscribe(res => {
+          console.log(res);
+          this.userInfo = {
+            id: res.UserId,
+            nickname: res.UserNickName,
+            avatar: res.UserHeadface
+          }
+          this.avatarSrc = res.UserHeadface + '?' + (new Date()).valueOf();
+          loading.dismiss();
+        });
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;
