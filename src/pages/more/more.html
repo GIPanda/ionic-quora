@@ -16,8 +16,8 @@
 <ion-content>
   
   <div *ngIf="isLoggedIn; else loginHint">
-    <ion-list class="list-container">
-      <button ion-item>
+    <ion-list class="header-list">
+      <button ion-item (click)="pushUserPage()">
         <ion-avatar item-start>
           <img src="{{avatarSrc}}" alt=""/>
         </ion-avatar>

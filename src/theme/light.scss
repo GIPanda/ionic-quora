@@ -1,3 +1,13 @@
 ion-content.content {
     background-color: #e5e6e8;
 }
+
+ion-list.header-list{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ion-app.ios [padding].btn-container,
+ion-app.md [padding].btn-container{    
+    padding-top: 10px;
+}

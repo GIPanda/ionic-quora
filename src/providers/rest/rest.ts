@@ -58,11 +58,15 @@ export class RestProvider {
    * @memberof RestProvider
    */
   register(mobile, nickname, password): Observable<any> {
-    return this.get(`${this.apiUrlRegister}?mobile=${mobile}&nickname=${nickname}&password=${password}`)
+    return this.get(`${this.apiUrlRegister}?mobile=${mobile}&nickname=${nickname}&password=${password}`);
   }
 
-  getUserInfo(userId): Observable<any> {
-    return this.get(`${this.apiUrlUserInfo}?userid=${userId}`)
+  getUserInfo(userId: string): Observable<any> {
+    return this.get(`${this.apiUrlUserInfo}?userid=${userId}`);
+  }
+
+  udpateNickname(userId, nickname): Observable<any> {
+    return this.get(`${this.apiUrlUpdateNickName}?userid=${userId}&nickname=${nickname}`);
   }
 
   /**

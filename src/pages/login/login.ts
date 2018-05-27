@@ -46,7 +46,7 @@ export class LoginPage extends BaseUI {
   }
 
   login() {
-    const loading = super.showLoading(this.loadingCtrl, "Please wait ...");
+    const loading = super.showLoading(this.loadingCtrl);
     this.rest.login(this.mobile, this.password)
       .subscribe(res => {
         if (res.Status == "OK") {

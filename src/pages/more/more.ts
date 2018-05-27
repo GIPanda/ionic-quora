@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
 import { User } from '../../app/domains/user.model';
+import { UserPage } from '../user/user';
 
 /**
  * Generated class for the MorePage page.
@@ -21,7 +22,7 @@ import { User } from '../../app/domains/user.model';
 export class MorePage extends BaseUI{
 
   isLoggedIn: boolean = false;
-  avatarSrc: string;
+  avatarSrc: string = '/assets/imgs/avatar-placeholder.png';
   userInfo: User = {};
 
   constructor(
@@ -37,21 +38,20 @@ export class MorePage extends BaseUI{
   showModal() {
     let modal = this.modalCtrl.create(LoginPage);
     modal.onWillDismiss(data => {
-      this.loadUserPage();
+      this.loadUserInfo();
     });    
     modal.present();
   }
 
   ionViewDidEnter() {
-    this.loadUserPage();
+    this.loadUserInfo();
   }
 
-  loadUserPage() {
+  loadUserInfo() {
     this.storage.get('UserId').then(val => {
       if (val !== null) {
         let loading = super.showLoading(this.loadCtrl);
         this.rest.getUserInfo(val).subscribe(res => {
-          console.log(res);
           this.userInfo = {
             id: res.UserId,
             nickname: res.UserNickName,
@@ -65,6 +65,10 @@ export class MorePage extends BaseUI{
         this.isLoggedIn = false;
       }
     });
+  }
+
+  pushUserPage() {
+    this.navCtrl.push(UserPage);
   }
 
 }

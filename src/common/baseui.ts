@@ -18,7 +18,7 @@ export abstract class BaseUI {
    * @returns {Loading} 
    * @memberof BaseUI
    */
-  protected showLoading(loadingCtrl: LoadingController, message: string = 'Please wait'): Loading {
+  protected showLoading(loadingCtrl: LoadingController, message: string = 'Please wait ...'): Loading {
     let loader = loadingCtrl.create({
       content: message,
       duration: 3000,
