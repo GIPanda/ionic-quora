@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { BaseUI } from '../../common/baseui';
 import { Storage } from '@ionic/storage';
 import { RestProvider } from '../../providers/rest/rest';
+import { AvatarPage } from '../avatar/avatar';
 
 /**
  * Generated class for the UserPage page.
@@ -75,6 +76,10 @@ export class UserPage extends BaseUI{
   logout() {
     this.storage.remove('UserId');
     this.viewCtrl.dismiss();
+  }
+
+  pushAvatarPage() {
+    this.navCtrl.push(AvatarPage);
   }
 
 }

@@ -34,6 +34,8 @@ export class RestProvider {
   //notification
   private apiUrlUserNotifications = "https://imoocqa.gugujiankong.com/api/account/usernotifications";
 
+  public apiUrlUploadImage = 'https://imoocqa.gugujiankong.com/api/account/uploadheadface';
+
   constructor(public http: HttpClient) {
   }
 

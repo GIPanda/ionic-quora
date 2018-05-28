@@ -12,6 +12,7 @@ import { MorePage } from '../pages/more/more';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { UserPage } from '../pages/user/user';
+import { AvatarPage } from '../pages/avatar/avatar';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,10 +28,11 @@ import { IonicStorageModule } from '@ionic/storage';
     ChatPage,
     NotificationPage,
     MorePage,
-    TabsPage,
     LoginPage,
     RegisterPage,
-    UserPage
+    UserPage,
+    AvatarPage,   
+    TabsPage,
   ],
   imports: [
     BrowserModule,
@@ -47,11 +49,12 @@ import { IonicStorageModule } from '@ionic/storage';
     DiscoveryPage,
     ChatPage,
     NotificationPage,
-    MorePage,    
-    TabsPage,
+    MorePage,
+    AvatarPage,   
     LoginPage,
     RegisterPage,
-    UserPage
+    UserPage,
+    TabsPage,    
   ],
   providers: [
     StatusBar,
