@@ -14,8 +14,8 @@
 
 
 <ion-content padding>
-  <img class="full-width" src="" alt="">
-  <h3>Please select a photo from the gallery</h3>
+  <img class="full-width" src="{{getImgPath(lastImage)}}" [hidden]="lastImage === null">
+  <h3 [hidden]="lastImage !== null">Please select a photo from the gallery</h3>
 </ion-content>
 
 <ion-footer>
@@ -24,7 +24,7 @@
       <button ion-button icon-left (click)="showActionSheet()">
         <ion-icon name="camera"></ion-icon> Select ...
       </button>
-      <button ion-button icon-left>
+      <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
         <ion-icon name="cloud-upload"></ion-icon> Upload
       </button>      
     </ion-buttons>

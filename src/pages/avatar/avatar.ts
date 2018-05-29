@@ -1,5 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, LoadingController, Platform, ToastController } from 'ionic-angular';
+import { 
+  IonicPage,
+  normalizeURL,
+  NavController,
+  NavParams, 
+  ActionSheetController, 
+  LoadingController, 
+  Platform, 
+  ToastController, 
+  ViewController 
+} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
@@ -22,12 +32,15 @@ declare var cordova: any; // import third part js lib
 @Component({
   selector: 'page-avatar',
   templateUrl: 'avatar.html',
+  providers: [
+    Camera, FileTransfer, File, FilePath
+  ]
 })
 export class AvatarPage extends BaseUI {
 
   userId: string;
   errorMessage: string;
-  lastImage: string;
+  lastImage: string = null;
 
   constructor(
     public navCtrl: NavController,
@@ -35,6 +48,7 @@ export class AvatarPage extends BaseUI {
     public actionSheetCtrl: ActionSheetController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
+    public viewCtrl: ViewController,
     public rest: RestProvider,
     public storage: Storage,
     public camera: Camera,
@@ -61,13 +75,13 @@ export class AvatarPage extends BaseUI {
         {
           text: 'Select form album',
           handler: () => {
-
+            this.takePhoto(this.camera.PictureSourceType.PHOTOLIBRARY);
           }
         },
         {
           text: 'Take photo',
           handler: () => {
-
+            this.takePhoto(this.camera.PictureSourceType.CAMERA);
           }
         },
         {
@@ -93,6 +107,8 @@ export class AvatarPage extends BaseUI {
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
         this.filePath.resolveNativePath(imagePath)
           .then(path => {
+            console.log('path', path);
+            console.log('image', imagePath);            
             let correctPath = path.substr(0, path.lastIndexOf('/') + 1);
             let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
             this.copyToLocalDir(correctPath, currentName, this.generateFileName());
@@ -120,20 +136,47 @@ export class AvatarPage extends BaseUI {
     let d = new Date(),
       n = d.getTime(),
       newFileName = n + ".jpg";
-    
+
     return newFileName;
   }
 
   getImgPath(img) {
-    if (img === null) {
+    if (img === null)  {
       return '';
     } else {
-      return cordova.file.dataDirectory + img;
+      return normalizeURL(cordova.file.dataDirectory + img); 
     }
   }
 
   uploadImage() {
-    let targetPath = this.getImgPath(this.lastImage);
+    const targetPath = this.getImgPath(this.lastImage);
+    const filename = this.userId + '.jpg';
+    const options: FileUploadOptions = {
+      fileKey: 'file',
+      fileName: filename,
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: {
+        filename: filename,
+        userid: this.userId
+      }
+    }
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    const loading = super.showLoading(this.loadingCtrl, "Uploading ...");
+
+    fileTransfer.upload(targetPath, this.rest.apiUrlUploadImage, options)
+      .then(data => {
+        loading.dismiss();
+        super.showToast(this.toastCtrl, "Avatar is uploaded successfully");
+        setTimeout(() => {
+          this.viewCtrl.dismiss();
+        }, 3000);
+      }, err => {
+        loading.dismiss();
+        super.showToast(this.toastCtrl, "Avatar upload error");
+      });
 
   }
 
