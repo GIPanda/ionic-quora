@@ -1,17 +1,32 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar
+      placeholder="Search: How to learn ionic"
+    ></ion-searchbar>
+    <ion-icon name="text" class="search-text"></ion-icon>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <div class="top-menu">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4 text-center>
+          <div (tap)="pushQuestionPage()">
+            <ion-icon name="create"></ion-icon> Quiz
+          </div>
+        </ion-col>
+        <ion-col col-4 text-center class="col-center">
+            <div>
+              <ion-icon name="albums"></ion-icon> Answer            
+            </div>
+        </ion-col>
+        <ion-col col-4 text-center>
+          <div (tap)="pushQuestionPage()">
+            <ion-icon name="share-alt"></ion-icon> Share
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

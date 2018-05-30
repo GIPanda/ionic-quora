@@ -106,9 +106,7 @@ export class AvatarPage extends BaseUI {
       //special fix for android file path problem
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
         this.filePath.resolveNativePath(imagePath)
-          .then(path => {
-            console.log('path', path);
-            console.log('image', imagePath);            
+          .then(path => {         
             let correctPath = path.substr(0, path.lastIndexOf('/') + 1);
             let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
             this.copyToLocalDir(correctPath, currentName, this.generateFileName());

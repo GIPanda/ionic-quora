@@ -1,3 +1,29 @@
 page-home {
+  .searchbar {
+    float: left;
+    width: 90%;
+  }
 
+  .search-text {
+    float: left;
+    font-size: 2em;
+    min-height: 44px;
+    color: #848994;
+    padding: 9px 5px;
+    text-align: center;
+  }
+
+  .top-menu {
+    height: 36px;
+    background-color: #FFFFFF;
+    margin-bottom: 5px;
+    color: #999999;
+    font-weight: bold;
+    .col-center {
+      border-left: 1px solid #dddddd;
+      border-right: 1px solid #dddddd;
+      margin: 5px 0;
+      padding: 0 5px;
+    }
+  }
 }
