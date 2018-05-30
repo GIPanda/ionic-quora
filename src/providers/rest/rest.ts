@@ -71,6 +71,10 @@ export class RestProvider {
     return this.get(`${this.apiUrlUpdateNickName}?userid=${userId}&nickname=${nickname}`);
   }
 
+  saveQuestion(userId, title, content): Observable<any> {
+    return this.get(`${this.apiUrlQuestionSave}?userid=${userId}&title=${title}&content=${content}`);
+  }
+
   /**
    * Global HTTP request method
    * @Dongjie LIU
