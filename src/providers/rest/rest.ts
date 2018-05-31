@@ -40,6 +40,40 @@ export class RestProvider {
   }
 
   /**
+   * Global HTTP request method
+   * @Dongjie LIU
+   * @private
+   * @param {string} url 
+   * @returns {Observable<any>} 
+   * @memberof RestProvider
+   */
+  private get(url: string): Observable<any> {
+    return this.http.get(url)
+      .map(res => JSON.parse(res.toString()))
+      .catch(this.handleError);
+  }
+
+  /**
+   * Handle http error response and display in error console
+   * 
+   * @private
+   * @param {(HttpErrorResponse | any)} error 
+   * @returns 
+   * @memberof RestProvider
+   */
+  private handleError(error: HttpErrorResponse | any) {
+    let errMsg: string;
+    if (error instanceof HttpErrorResponse) {
+      const err = error.error || JSON.stringify(error);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
+
+  /**
    * Login by mobile phone and password
    * 
    * @param {any} mobile 
@@ -74,38 +108,14 @@ export class RestProvider {
   saveQuestion(userId, title, content): Observable<any> {
     return this.get(`${this.apiUrlQuestionSave}?userid=${userId}&title=${title}&content=${content}`);
   }
-
+  
   /**
-   * Global HTTP request method
-   * @Dongjie LIU
-   * @private
-   * @param {string} url 
+   * Get stream of feeds
+   * 
    * @returns {Observable<any>} 
    * @memberof RestProvider
    */
-  private get(url: string): Observable<any> {
-    return this.http.get(url)
-      .map(res => JSON.parse(res.toString()))
-      .catch(this.handleError);
-  }
-
-  /**
-   * Handle http error response and display in error console
-   * 
-   * @private
-   * @param {(HttpErrorResponse | any)} error 
-   * @returns 
-   * @memberof RestProvider
-   */
-  private handleError(error: HttpErrorResponse | any) {
-    let errMsg: string;
-    if (error instanceof HttpErrorResponse) {
-      const err = error.error || JSON.stringify(error);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+  getFeeds(): Observable<any> {
+    return this.get(`${this.apiUrlFeeds}`);
   }
 }
