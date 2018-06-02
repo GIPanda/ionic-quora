@@ -108,7 +108,7 @@ export class RestProvider {
   saveQuestion(userId, title, content): Observable<any> {
     return this.get(`${this.apiUrlQuestionSave}?userid=${userId}&title=${title}&content=${content}`);
   }
-  
+
   /**
    * Get stream of feeds
    * 
@@ -117,5 +117,32 @@ export class RestProvider {
    */
   getFeeds(): Observable<any> {
     return this.get(`${this.apiUrlFeeds}`);
+  }
+
+  /**
+   * Get quesiton id
+   *
+   * @param {string} id
+   * @returns {Observable<any>}
+   * @memberof RestProvider
+   */
+  getQuestion(id: string): Observable<any> {
+    return this.get(`${this.apiUrlGetQuestion}?id=${id}`);
+  }
+
+  /**
+   * Get question detail, pass userId to check if user has followed the question
+   *
+   * @param {string} qsId
+   * @param {string} userId
+   * @returns {Observable<any>}
+   * @memberof RestProvider
+   */
+  getQuestionWithUser(qsId: string, userId: string): Observable<any> {
+    return this.get(`${this.apiUrlGetQuestionWithUser}?id=${qsId}&userId=${userId}`);
+  }
+
+  toggleFollow(qsId, userId): Observable<any> {
+    return this.get(`${this.apiUrlSaveFavourite}?questionId=${qsId}&userid=${userId}`);
   }
 }
