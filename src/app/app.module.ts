@@ -16,6 +16,8 @@ import { AvatarPage } from '../pages/avatar/avatar';
 import { QuestionPage } from '../pages/question/question';
 import { DetailPage } from '../pages/detail/detail';
 import { TabsPage } from '../pages/tabs/tabs';
+import { AnswerPage } from '../pages/answer/answer';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,6 +39,7 @@ import { IonicStorageModule } from '@ionic/storage';
     QuestionPage,
     DetailPage,
     TabsPage,
+    AnswerPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { IonicStorageModule } from '@ionic/storage';
     UserPage,
     QuestionPage,
     DetailPage,
-    TabsPage,    
+    TabsPage,
+    AnswerPage
   ],
   providers: [
     StatusBar,

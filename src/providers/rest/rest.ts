@@ -145,4 +145,8 @@ export class RestProvider {
   toggleFollow(qsId, userId): Observable<any> {
     return this.get(`${this.apiUrlSaveFavourite}?questionId=${qsId}&userid=${userId}`);
   }
+
+  answer(qsId, userId, content): Observable<any> {
+    return this.get(`${this.apiUrlAnswer}?questionId=${qsId}&userid=${userId}&content=${content}`);
+  }
 }

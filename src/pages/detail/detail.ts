@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
 import { Storage } from '@ionic/storage';
+import { AnswerPage } from '../answer/answer';
 
 /**
  * Generated class for the DetailPage page.
@@ -30,6 +31,7 @@ export class DetailPage extends BaseUI {
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
+    public modalCtrl: ModalController,
     public rest: RestProvider,
     public storage: Storage,
     public navParams: NavParams) {
@@ -51,7 +53,8 @@ export class DetailPage extends BaseUI {
             this.question = res;
             this.answers = res.Answers;
             this.isFollowed = res.IsFavourate;
-            this.isOwner = (res.OwnerUserId == userId)
+            this.isOwner = (res.OwnerUserId == userId);
+            loading.dismiss();
           },
           error => this.errorMessage = <any>error
         );
@@ -71,6 +74,14 @@ export class DetailPage extends BaseUI {
       },
       error => this.errorMessage = <any>error
     );
+  }
+
+  showAnswerModal() {
+    const modal = this.modalCtrl.create(AnswerPage, {id: this.id});
+    modal.onWillDismiss(() => {
+      this.loadQuestion(this.id);
+    });
+    modal.present();    
   }
 
 }

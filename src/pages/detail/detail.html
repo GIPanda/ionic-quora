@@ -18,7 +18,7 @@
     <ion-card-content>
       {{question?.Content}}
       <p>{{question?.LikeCount}}&nbsp;follows&nbsp;&nbsp;&nbsp;&nbsp;{{question?.CommentCount}}&nbsp;answers</p>
-      <button ion-button small [disabled]="isOwner">
+      <button ion-button small [disabled]="isOwner" (click)="showAnswerModal()" >
         <ion-icon name="add"></ion-icon>&nbsp;Answer
       </button>
       &nbsp;&nbsp;
