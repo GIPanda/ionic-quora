@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { BaseUI } from '../../common/baseui';
+import { RestProvider } from '../../providers/rest/rest';
+import { DetailPage } from '../detail/detail';
 
 /**
  * Generated class for the DiscoveryPage page.
@@ -13,13 +16,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-discovery',
   templateUrl: 'discovery.html',
 })
-export class DiscoveryPage {
+export class DiscoveryPage extends BaseUI{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  feeds: any = [];
+  errorMessage: any;
+  
+  constructor(
+    public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public loadingCtrl: LoadingController,
+    public rest: RestProvider
+  ) {
+    super();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DiscoveryPage');
+    this.getFeeds();
   }
 
+  getFeeds() {
+    const loading = super.showLoading(this.loadingCtrl);
+    this.rest.getDiscoveryFeeds().subscribe(res => {
+      this.feeds = res;
+      loading.dismiss();
+    },
+    error => this.errorMessage = <any>error);
+  }  
+
+  doRefresh(refresher) {
+    this.getFeeds();
+    refresher.complete();
+  }
+
+  pushDetailPage(questionId) {
+    this.navCtrl.push(DetailPage, {id: questionId});
+  }
 }

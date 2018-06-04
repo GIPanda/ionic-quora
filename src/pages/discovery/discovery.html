@@ -7,12 +7,36 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>discovery</ion-title>
+    <ion-title>Discovery</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 
-<ion-content padding>
-
+  <ion-card *ngFor="let feed of feeds" (click)="pushDetailPage(feed.IdentityId)">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="{{feed.HeadFace}}">
+      </ion-avatar>
+      <p>
+        {{feed.UserNickName}} published this question
+        <ion-icon class="btn-more" name="more"></ion-icon>
+      </p>
+    </ion-item>
+    <h2>{{feed.ContentTitle}}</h2>
+    <ion-card-content>
+      <p>{{feed.ContentSummary}}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col col-8 center text-left>
+        <ion-note>{{feed.LikeCount}}&nbsp;like&nbsp;&middot;&nbsp;{{feed.CommentCount}}&nbsp;comments&nbsp;&middot;&nbsp;Follow</ion-note>
+      </ion-col>
+      <ion-col col-4></ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>

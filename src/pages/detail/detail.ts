@@ -53,7 +53,7 @@ export class DetailPage extends BaseUI {
             this.question = res;
             this.answers = res.Answers;
             this.isFollowed = res.IsFavourate;
-            this.isOwner = (res.OwnerUserId == userId);
+            this.isOwner = (res.OwnUserId == userId);
             loading.dismiss();
           },
           error => this.errorMessage = <any>error

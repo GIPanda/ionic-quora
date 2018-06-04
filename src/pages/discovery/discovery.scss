@@ -1,3 +1,55 @@
 page-discovery {
-
+  .card {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    box-shadow: none;
+    h2 {
+      padding-left: 10px;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    p {
+      color: #464646;
+      font-size: 1.2rem;
+    }
+    .note {
+      padding-left: 5px;
+      font-size: 1.1rem;
+    }
+    .label {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .card-content {
+      padding-top: 6px;
+      padding-left: 10px;
+      padding-bottom: 2px;
+    }
+    .col {
+      padding-top: 0;
+      padding-bottom: 10px;
+    }
+    .item {
+      padding-left: 10px;
+      ion-avatar {
+        &[item-start] {
+          margin: 5px 5px 3px 0;
+          min-width: 20px;
+          min-height: 20px;
+        }
+        img {
+          width: 20px;
+          height: 20px;
+        }
+        p {
+          color: #999999;
+        }
+      }
+    }
+    .btn-more {
+      float: right;
+      padding-top: 3px;
+    }    
+  }
 }

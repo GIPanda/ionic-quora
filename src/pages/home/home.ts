@@ -49,7 +49,7 @@ export class HomePage extends BaseUI{
 
   getFeeds() {
     const loading = super.showLoading(this.loadingCtrl);
-    this.rest.getFeeds().subscribe(res => {
+    this.rest.getHomeFeeds().subscribe(res => {
       this.feeds = res;
       loading.dismiss();
     },

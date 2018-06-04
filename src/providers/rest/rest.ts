@@ -115,8 +115,12 @@ export class RestProvider {
    * @returns {Observable<any>} 
    * @memberof RestProvider
    */
-  getFeeds(): Observable<any> {
+  getHomeFeeds(): Observable<any> {
     return this.get(`${this.apiUrlFeeds}`);
+  }
+
+  getDiscoveryFeeds(): Observable<any> {
+    return this.get(`${this.apiUrlQuestionList}`);
   }
 
   /**
