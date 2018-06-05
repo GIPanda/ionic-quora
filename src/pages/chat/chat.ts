@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ChatDetailPage } from '../chat-detail/chat-detail';
 
 /**
  * Generated class for the ChatPage page.
@@ -14,8 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chat.html',
 })
 export class ChatPage {
+  avatarSrc: string = '/assets/imgs/avatar-placeholder.png';
+  userInfo: Object;
+  chatDetailPage: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.userInfo = {
+      userid: '121221212',
+      username: 'Chat bot'
+    }
+    this.chatDetailPage = ChatDetailPage;
   }
 
   ionViewDidLoad() {

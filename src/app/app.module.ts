@@ -17,7 +17,7 @@ import { QuestionPage } from '../pages/question/question';
 import { DetailPage } from '../pages/detail/detail';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AnswerPage } from '../pages/answer/answer';
-
+import { ChatDetailPage } from '../pages/chat-detail/chat-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +39,8 @@ import { IonicStorageModule } from '@ionic/storage';
     QuestionPage,
     DetailPage,
     TabsPage,
-    AnswerPage
+    AnswerPage,
+    ChatDetailPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +65,8 @@ import { IonicStorageModule } from '@ionic/storage';
     QuestionPage,
     DetailPage,
     TabsPage,
-    AnswerPage
+    AnswerPage,
+    ChatDetailPage
   ],
   providers: [
     StatusBar,
