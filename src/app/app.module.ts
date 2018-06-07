@@ -24,6 +24,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { ComponentsModule } from '../components/components.module';
+import { EmojiPickerComponent } from '../components/emoji-picker/emoji-picker';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -48,7 +51,8 @@ import { IonicStorageModule } from '@ionic/storage';
     IonicModule.forRoot(MyApp, {
       backButtonText: 'Back'
     }),
-    IonicStorageModule.forRoot(),    
+    IonicStorageModule.forRoot(),
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +70,7 @@ import { IonicStorageModule } from '@ionic/storage';
     DetailPage,
     TabsPage,
     AnswerPage,
-    ChatDetailPage
+    ChatDetailPage,
   ],
   providers: [
     StatusBar,

@@ -28,11 +28,11 @@
   </div>
 </ion-content>
 
-<ion-footer no-border style="height: 55px;">
+<ion-footer no-border [style.height]="showEmojis ? '255px' : '55px'">
   <ion-grid class="input-wrap">
     <ion-row>
       <ion-col col-2>
-        <button ion-button clear icon-only item-right>
+        <button ion-button clear icon-only item-right (click)="toggleEmojiPicker()">
           <ion-icon name="md-happy"></ion-icon>
         </button>
       </ion-col>
@@ -46,4 +46,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <emoji-picker *ngIf="showEmojis"></emoji-picker>
 </ion-footer>

@@ -15,7 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ChatDetailPage {
 
-  chatWith: string; 
+  chatWith: string;
+  showEmojis = false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams) {
@@ -23,7 +24,10 @@ export class ChatDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatDetailPage');
+  }
+
+  toggleEmojiPicker() {
+    this.showEmojis = !this.showEmojis;
   }
 
 }

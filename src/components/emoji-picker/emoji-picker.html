@@ -1,0 +1,12 @@
+<!-- Generated template for the EmojiPickerComponent component -->
+<div class="emoji-picker">
+  <div class="emoji-items">
+    <ion-slides pager>
+      <ion-slide *ngFor="let emojiChunk of emojiChunks">
+        <span *ngFor="let emoji of emojiChunk" class="emoji-item" (click)="setValue(emoji)">
+          {{emoji}}
+        </span>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</div>
