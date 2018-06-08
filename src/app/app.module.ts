@@ -26,6 +26,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { ComponentsModule } from '../components/components.module';
 import { EmojiPickerComponent } from '../components/emoji-picker/emoji-picker';
+import { ChatProvider } from '../providers/chat/chat';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { EmojiPickerComponent } from '../components/emoji-picker/emoji-picker';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    RestProvider
+    RestProvider,
+    ChatProvider
   ]
 })
 export class AppModule {}

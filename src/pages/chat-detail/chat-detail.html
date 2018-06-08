@@ -14,14 +14,14 @@
 
 <ion-content>
   <div class="message-wrap">
-    <div class="message right">
-      <img class="user-img" src="" alt="">
+    <div *ngFor="let chatMsg of chatMessages" class="message right">
+      <img class="user-img" [src]="chatMsg.userImgUrl" alt="">
       <div class="msg-detail">
         <div class="msg-info">
-          <p>Parry&nbsp;1 min ago</p>
+          <p>{{chatMsg.username}}&nbsp;{{chatMsg.time}}</p>
         </div>
         <div class="msg-content">
-          <p class="line-breaker">Message content</p>
+          <p class="line-breaker">{{chatMsg.message}}</p>
         </div>
       </div>
     </div>
