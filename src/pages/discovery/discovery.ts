@@ -30,7 +30,7 @@ export class DiscoveryPage extends BaseUI{
     super();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.getFeeds();
   }
 

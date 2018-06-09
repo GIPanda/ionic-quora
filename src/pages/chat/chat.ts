@@ -21,7 +21,7 @@ export class ChatPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.userInfo = {
-      userid: '121221212',
+      userid: '123321',
       username: 'Chat bot'
     }
     this.chatDetailPage = ChatDetailPage;

@@ -7,14 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{chatWith}}</ion-title>
+    <ion-title>{{chatWith.username}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-  <div class="message-wrap">
-    <div *ngFor="let chatMsg of chatMessages" class="message right">
+  <div class="message-wrap" *ngIf="chatWith && curUser">
+    <div *ngFor="let chatMsg of chatMessages" class="message" [class.left]="chatMsg.userId === chatWith.id" [class.right]="chatMsg.userId === curUser.id">
       <img class="user-img" [src]="chatMsg.userImgUrl" alt="">
       <div class="msg-detail">
         <div class="msg-info">
@@ -37,14 +37,19 @@
         </button>
       </ion-col>
       <ion-col col-8>
-        <ion-textarea placeholder="type text"></ion-textarea>
+        <ion-textarea 
+          #chatInput 
+          [(ngModel)]="editorMsg" 
+          (keyup.enter)="sendMessage()"
+          (focus)="onChatInputFocus()"
+          placeholder="type text"></ion-textarea>
       </ion-col>
       <ion-col col-2>
-        <button ion-button clear icon-only item-right>
+        <button ion-button clear icon-only item-right (click)="sendMessage()">
           <ion-icon name="send"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <emoji-picker *ngIf="showEmojis"></emoji-picker>
+  <emoji-picker *ngIf="showEmojis" [(ngModel)]="editorMsg"></emoji-picker>
 </ion-footer>

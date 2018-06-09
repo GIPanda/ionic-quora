@@ -23,7 +23,7 @@ export class HomePage extends BaseUI{
     super();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.getFeeds();
   }
 
