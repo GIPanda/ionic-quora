@@ -25,8 +25,8 @@ import { RestProvider } from '../providers/rest/rest';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { ComponentsModule } from '../components/components.module';
-import { EmojiPickerComponent } from '../components/emoji-picker/emoji-picker';
 import { ChatProvider } from '../providers/chat/chat';
+import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { ChatProvider } from '../providers/chat/chat';
     DetailPage,
     TabsPage,
     AnswerPage,
-    ChatDetailPage
+    ChatDetailPage,
+    RelativeTimePipe
   ],
   imports: [
     BrowserModule,

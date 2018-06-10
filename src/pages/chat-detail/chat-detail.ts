@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, TextInput, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, TextInput, Content, Events } from 'ionic-angular';
 import { ChatProvider, ChatMessage, UserInfo } from '../../providers/chat/chat';
 import { Storage } from '@ionic/storage';
 import { User } from '../../domain';
@@ -35,6 +35,7 @@ export class ChatDetailPage {
     public navParams: NavParams,
     public chatProvider: ChatProvider,
     public rest: RestProvider,
+    public events: Events,
     public storage: Storage) {
     this.chatWith = {
       id: navParams.get('userid'),
@@ -45,6 +46,11 @@ export class ChatDetailPage {
 
   ionViewDidEnter() {
     this.getMessages();
+
+    this.events.subscribe('chat.recieved', (message: ChatMessage, time) => {
+      this.chatMessages.push(message);
+      this.scrollToButtom();
+    })
   }
 
   toggleEmojiPicker() {
@@ -93,6 +99,37 @@ export class ChatDetailPage {
   }
 
   sendMessage() {
+    if (this.editorMsg.trim()) {
+      const msgId = Date.now().toString();
+      const msgToSend = {
+        messageId: msgId,
+        userId: this.curUser.id,
+        username: this.curUser.username,
+        userImgUrl: this.curUser.avatar,
+        toUserId: this.chatWith.id,
+        time: Date.now(),
+        message: this.editorMsg,
+        status: 'pending'
+      };
+      this.chatMessages.push(msgToSend);
+      this.scrollToButtom();
 
+      this.editorMsg = '';
+      if (this.showEmojis) {
+        this.messageInput.setFocus();
+      }
+
+      this.chatProvider.sendMessage(msgToSend).subscribe(() => {
+        const index = this.chatMessages.findIndex(e => e.messageId === msgId);
+        if (index !== -1) {
+          this.chatMessages[index].status = 'success';
+        }
+      });
+    }
   }
+
+  ionViewWillLeave() {
+    this.events.unsubscribe('chat.recieved');
+  }
+
 }

@@ -16,9 +16,10 @@
   <div class="message-wrap" *ngIf="chatWith && curUser">
     <div *ngFor="let chatMsg of chatMessages" class="message" [class.left]="chatMsg.userId === chatWith.id" [class.right]="chatMsg.userId === curUser.id">
       <img class="user-img" [src]="chatMsg.userImgUrl" alt="">
+      <ion-spinner name="dots" *ngIf="chatMsg.status === 'pending'"></ion-spinner>
       <div class="msg-detail">
         <div class="msg-info">
-          <p>{{chatMsg.username}}&nbsp;{{chatMsg.time}}</p>
+          <p>{{chatMsg.username}}&nbsp;{{chatMsg.time | relativeTime}}</p>
         </div>
         <div class="msg-content">
           <p class="line-breaker">{{chatMsg.message}}</p>
