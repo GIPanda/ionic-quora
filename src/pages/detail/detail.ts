@@ -54,7 +54,7 @@ export class DetailPage extends BaseUI {
             this.answers = res.Answers;
             this.isFollowed = res.IsFavourate;
             this.isOwner = (res.OwnUserId == userId);
-            loading.dismiss();
+            loading.dismissAll();
           },
           error => this.errorMessage = <any>error
         );
@@ -67,7 +67,7 @@ export class DetailPage extends BaseUI {
     this.rest.toggleFollow(this.id, this.userId).subscribe(
       res => {
         if (res.Status === 'OK') {
-          loading.dismiss();
+          loading.dismissAll();
           super.showToast(this.toastCtrl, this.isFollowed ? "You have unfollowed this question": "You have followed this question" );
           this.isFollowed = !this.isFollowed;
         }

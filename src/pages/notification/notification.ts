@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { BaseUI } from '../../common/baseui';
+import { RestProvider } from '../../providers/rest/rest';
+import { DetailPage } from '../detail/detail';
 
 /**
  * Generated class for the NotificationPage page.
@@ -13,13 +17,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-notification',
   templateUrl: 'notification.html',
 })
-export class NotificationPage {
+export class NotificationPage extends BaseUI {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  notifications: any;
+  errorMessage: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadCtrl: LoadingController,
+    public rest: RestProvider,
+    public storage: Storage) {
+    super();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationPage');
+    this.storage.get('UserId').then((userId) => {
+      if (userId != null) {
+        var loading = super.showLoading(this.loadCtrl);
+        this.rest.getUserNotfications(userId)
+          .subscribe(
+            res => {
+              this.notifications = res;
+              loading.dismissAll();
+            },
+            error => this.errorMessage = <any> error
+          )
+      }
+    })
+  }
+
+  pushDetailPage(qsId) {
+    this.navCtrl.push(DetailPage, {id: qsId});
   }
 
 }

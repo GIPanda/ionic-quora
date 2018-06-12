@@ -123,6 +123,10 @@ export class RestProvider {
     return this.get(`${this.apiUrlQuestionList}`);
   }
 
+  getUserNotfications(userId): Observable<any> {
+    return this.get(`${this.apiUrlUserNotifications}?userid=${userId}`)
+  }
+
   /**
    * Get quesiton id
    *
@@ -143,7 +147,7 @@ export class RestProvider {
    * @memberof RestProvider
    */
   getQuestionWithUser(qsId: string, userId: string): Observable<any> {
-    return this.get(`${this.apiUrlGetQuestionWithUser}?id=${qsId}&userId=${userId}`);
+    return this.get(`${this.apiUrlGetQuestionWithUser}?id=${qsId}&userid=${userId}`);
   }
 
   toggleFollow(qsId, userId): Observable<any> {
