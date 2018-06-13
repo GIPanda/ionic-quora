@@ -18,6 +18,7 @@ import { DetailPage } from '../pages/detail/detail';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AnswerPage } from '../pages/answer/answer';
 import { ChatDetailPage } from '../pages/chat-detail/chat-detail';
+import { UserQuestionsPage } from '../pages/user-questions/user-questions';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,7 +46,8 @@ import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
     TabsPage,
     AnswerPage,
     ChatDetailPage,
-    RelativeTimePipe
+    RelativeTimePipe,
+    UserQuestionsPage
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,7 @@ import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
     TabsPage,
     AnswerPage,
     ChatDetailPage,
+    UserQuestionsPage
   ],
   providers: [
     StatusBar,

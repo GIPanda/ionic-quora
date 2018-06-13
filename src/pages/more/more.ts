@@ -6,6 +6,7 @@ import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
 import { User } from '../../app/domains/user.model';
 import { UserPage } from '../user/user';
+import { UserQuestionsPage } from '../user-questions/user-questions';
 
 /**
  * Generated class for the MorePage page.
@@ -43,7 +44,7 @@ export class MorePage extends BaseUI{
     modal.present();
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.loadUserInfo();
   }
 
@@ -69,6 +70,10 @@ export class MorePage extends BaseUI{
 
   pushUserPage() {
     this.navCtrl.push(UserPage);
+  }
+
+  pushUserQsPage(type: string) {
+    this.navCtrl.push(UserQuestionsPage, {qsType: type});
   }
 
 }

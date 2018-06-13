@@ -31,7 +31,7 @@ export class NotificationPage extends BaseUI {
     super();
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.storage.get('UserId').then((userId) => {
       if (userId != null) {
         var loading = super.showLoading(this.loadCtrl);

@@ -14,15 +14,33 @@
 
 
 <ion-content>
-  
+
   <div *ngIf="isLoggedIn; else loginHint">
     <ion-list class="header-list">
       <button ion-item (click)="pushUserPage()">
         <ion-avatar item-start>
-          <img src="{{avatarSrc}}" alt=""/>
+          <img src="{{avatarSrc}}" alt="" />
         </ion-avatar>
         <h2>{{userInfo.nickname}}</h2>
         <p>View or edit profile</p>
+      </button>
+    </ion-list>
+
+    <ion-list class="header-list">
+      <ion-list-header>
+        My quora
+      </ion-list-header>
+      <button ion-item (click)="pushUserQsPage('question')">
+        <ion-icon name="paper" item-start color="primary"></ion-icon>
+        <ion-label>My questions</ion-label>
+      </button>
+      <button ion-item (click)="pushUserQsPage('favourite')">
+        <ion-icon name="star" item-start color="orange"></ion-icon>
+        <ion-label>My follows</ion-label>
+      </button>
+      <button ion-item (click)="pushUserQsPage('answer')">
+        <ion-icon name="disc" item-start color="secondary"></ion-icon>
+        <ion-label>My answers</ion-label>
       </button>
     </ion-list>
   </div>
@@ -37,5 +55,5 @@
       </ion-card-content>
     </ion-card>
   </ng-template>
-  
+
 </ion-content>
