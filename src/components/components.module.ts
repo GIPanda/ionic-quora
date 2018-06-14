@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { EmojiPickerComponent } from './emoji-picker/emoji-picker';
-import { QuestionsComponent } from './questions/questions';
+import { UserFeedsComponent } from './user-feeds/user-feeds';
 @NgModule({
 	declarations: [
 		EmojiPickerComponent,
-		QuestionsComponent
+		UserFeedsComponent
 	],
 	imports: [IonicPageModule.forChild(EmojiPickerComponent)],
 	exports: [
 		EmojiPickerComponent,
-		QuestionsComponent
+		UserFeedsComponent
 	]
 })
 export class ComponentsModule { }

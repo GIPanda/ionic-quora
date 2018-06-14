@@ -18,7 +18,7 @@ import { DetailPage } from '../pages/detail/detail';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AnswerPage } from '../pages/answer/answer';
 import { ChatDetailPage } from '../pages/chat-detail/chat-detail';
-import { UserQuestionsPage } from '../pages/user-questions/user-questions';
+import { UserFeedsPage } from '../pages/user-feeds/user-feeds';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +28,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ComponentsModule } from '../components/components.module';
 import { ChatProvider } from '../providers/chat/chat';
 import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
     AnswerPage,
     ChatDetailPage,
     RelativeTimePipe,
-    UserQuestionsPage
+    UserFeedsPage
   ],
   imports: [
     BrowserModule,
@@ -75,14 +76,15 @@ import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
     TabsPage,
     AnswerPage,
     ChatDetailPage,
-    UserQuestionsPage
+    UserFeedsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     RestProvider,
-    ChatProvider
+    ChatProvider,
+    SettingsProvider
   ]
 })
 export class AppModule {}

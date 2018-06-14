@@ -43,6 +43,17 @@
         <ion-label>My answers</ion-label>
       </button>
     </ion-list>
+
+    <ion-list class="header-list">
+      <ion-list-header>
+        Settings
+      </ion-list-header>
+      <ion-item (click)="pushUserQsPage('question')">
+        <ion-icon name="cloudy-night" item-start color="purple"></ion-icon>
+        <ion-label>Dark mode</ion-label>
+        <ion-toggle color="purple" (ionChange)="toggleTheme()" ></ion-toggle>
+      </ion-item>
+    </ion-list>
   </div>
 
   <ng-template #loginHint>

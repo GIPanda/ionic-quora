@@ -6,16 +6,16 @@ import { DetailPage } from '../../pages/detail/detail';
 import { Storage } from '@ionic/storage';
 
 /**
- * Generated class for the QuestionsComponent component.
+ * Generated class for the UserFeedsComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
 @Component({
-  selector: 'questions',
-  templateUrl: 'questions.html'
+  selector: 'user-feeds',
+  templateUrl: 'user-feeds.html'
 })
-export class QuestionsComponent extends BaseUI {
+export class UserFeedsComponent extends BaseUI {
 
   questions: any;
   errorMessage: any;
@@ -34,7 +34,7 @@ export class QuestionsComponent extends BaseUI {
     this.storage.get('UserId').then((userId) => {
       if (userId != null) {
         var loading = super.showLoading(this.loadCtrl);
-        this.rest.getQuestions(userId, this.qsType)
+        this.rest.getUserFeeds(userId, this.qsType)
           .subscribe(
             res => {
               this.questions = res;

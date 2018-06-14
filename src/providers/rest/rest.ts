@@ -128,14 +128,14 @@ export class RestProvider {
   }
 
   /**
-   * Get questions of user by type
+   * Get feeds of user by type
    *
    * @param {*} userId
    * @param {*} type question/answer:favorite
    * @returns {Observable<any>}
    * @memberof RestProvider
    */
-  getQuestions(userId, type): Observable<any> {
+  getUserFeeds(userId, type): Observable<any> {
     return this.get(`${this.apiGetUserQuestionList}?userid=${userId}&type=${type}`);
   }
 

@@ -6,7 +6,8 @@ import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
 import { User } from '../../app/domains/user.model';
 import { UserPage } from '../user/user';
-import { UserQuestionsPage } from '../user-questions/user-questions';
+import { UserFeedsPage } from '../user-feeds/user-feeds';
+import { SettingsProvider } from '../../providers/settings/settings';
 
 /**
  * Generated class for the MorePage page.
@@ -25,6 +26,7 @@ export class MorePage extends BaseUI{
   isLoggedIn: boolean = false;
   avatarSrc: string = '/assets/imgs/avatar-placeholder.png';
   userInfo: User = {};
+  selectedTheme: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,8 +34,11 @@ export class MorePage extends BaseUI{
     public modalCtrl: ModalController,
     public loadCtrl: LoadingController,
     public rest: RestProvider,
+    public settings: SettingsProvider,
     public storage: Storage) {
       super();
+      this.settings.getActiveTheme().subscribe(theme => this.selectedTheme = theme);
+
   }
 
   showModal() {
@@ -73,7 +78,15 @@ export class MorePage extends BaseUI{
   }
 
   pushUserQsPage(type: string) {
-    this.navCtrl.push(UserQuestionsPage, {qsType: type});
+    this.navCtrl.push(UserFeedsPage, {qsType: type});
+  }
+
+  toggleTheme() {
+    if (this.selectedTheme === 'dark-theme' ){
+      this.settings.setActiveTheme('light-theme');
+    } else {
+      this.settings.setActiveTheme('dark-theme');
+    }
   }
 
 }
