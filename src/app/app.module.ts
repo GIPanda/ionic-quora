@@ -19,6 +19,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AnswerPage } from '../pages/answer/answer';
 import { ChatDetailPage } from '../pages/chat-detail/chat-detail';
 import { UserFeedsPage } from '../pages/user-feeds/user-feeds';
+import { ScanBarcodePage } from '../pages/scan-barcode/scan-barcode';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +49,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     AnswerPage,
     ChatDetailPage,
     RelativeTimePipe,
-    UserFeedsPage
+    UserFeedsPage,
+    ScanBarcodePage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     TabsPage,
     AnswerPage,
     ChatDetailPage,
-    UserFeedsPage
+    UserFeedsPage,
+    ScanBarcodePage
   ],
   providers: [
     StatusBar,

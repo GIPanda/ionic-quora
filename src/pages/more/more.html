@@ -48,11 +48,15 @@
       <ion-list-header>
         Settings
       </ion-list-header>
-      <ion-item (click)="pushUserQsPage('question')">
+      <ion-item>
         <ion-icon name="cloudy-night" item-start color="purple"></ion-icon>
         <ion-label>Dark mode</ion-label>
-        <ion-toggle color="purple" (ionChange)="toggleTheme()" ></ion-toggle>
+        <ion-toggle color="purple" (ionChange)="toggleTheme()"></ion-toggle>
       </ion-item>
+      <button ion-item>
+        <ion-icon name="qr-scanner" item-start color="dark"></ion-icon>
+        <ion-label>Scan QR Code</ion-label>
+      </button>
     </ion-list>
   </div>
 
