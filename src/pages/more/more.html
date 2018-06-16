@@ -53,7 +53,7 @@
         <ion-label>Dark mode</ion-label>
         <ion-toggle color="purple" (ionChange)="toggleTheme()"></ion-toggle>
       </ion-item>
-      <button ion-item>
+      <button ion-item (click)="pushScanPage()">
         <ion-icon name="qr-scanner" item-start color="dark"></ion-icon>
         <ion-label>Scan QR Code</ion-label>
       </button>

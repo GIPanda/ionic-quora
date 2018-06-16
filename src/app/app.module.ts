@@ -19,7 +19,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AnswerPage } from '../pages/answer/answer';
 import { ChatDetailPage } from '../pages/chat-detail/chat-detail';
 import { UserFeedsPage } from '../pages/user-feeds/user-feeds';
-import { ScanBarcodePage } from '../pages/scan-barcode/scan-barcode';
+import { ScanQrcodePage } from '../pages/scan-qrcode/scan-qrcode';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,7 +50,7 @@ import { SettingsProvider } from '../providers/settings/settings';
     ChatDetailPage,
     RelativeTimePipe,
     UserFeedsPage,
-    ScanBarcodePage
+    ScanQrcodePage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +79,7 @@ import { SettingsProvider } from '../providers/settings/settings';
     AnswerPage,
     ChatDetailPage,
     UserFeedsPage,
-    ScanBarcodePage
+    ScanQrcodePage
   ],
   providers: [
     StatusBar,

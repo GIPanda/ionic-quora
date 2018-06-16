@@ -8,6 +8,7 @@ import { User } from '../../app/domains/user.model';
 import { UserPage } from '../user/user';
 import { UserFeedsPage } from '../user-feeds/user-feeds';
 import { SettingsProvider } from '../../providers/settings/settings';
+import { ScanQrcodePage } from '../scan-qrcode/scan-qrcode';
 
 /**
  * Generated class for the MorePage page.
@@ -21,7 +22,7 @@ import { SettingsProvider } from '../../providers/settings/settings';
   selector: 'page-more',
   templateUrl: 'more.html',
 })
-export class MorePage extends BaseUI{
+export class MorePage extends BaseUI {
 
   isLoggedIn: boolean = false;
   avatarSrc: string = '/assets/imgs/avatar-placeholder.png';
@@ -29,15 +30,15 @@ export class MorePage extends BaseUI{
   selectedTheme: string;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public loadCtrl: LoadingController,
     public rest: RestProvider,
     public settings: SettingsProvider,
     public storage: Storage) {
-      super();
-      this.settings.getActiveTheme().subscribe(theme => this.selectedTheme = theme);
+    super();
+    this.settings.getActiveTheme().subscribe(theme => this.selectedTheme = theme);
 
   }
 
@@ -45,11 +46,11 @@ export class MorePage extends BaseUI{
     let modal = this.modalCtrl.create(LoginPage);
     modal.onWillDismiss(data => {
       this.loadUserInfo();
-    });    
+    });
     modal.present();
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.loadUserInfo();
   }
 
@@ -78,11 +79,20 @@ export class MorePage extends BaseUI{
   }
 
   pushUserQsPage(type: string) {
-    this.navCtrl.push(UserFeedsPage, {qsType: type});
+    this.navCtrl.push(UserFeedsPage, { qsType: type });
+  }
+
+  /**
+   * go to qrcode scan page
+   * Camera will not be displayed unless animate = false
+   * @memberof MorePage
+   */
+  pushScanPage() {
+    this.navCtrl.push(ScanQrcodePage, null, { animate: false })
   }
 
   toggleTheme() {
-    if (this.selectedTheme === 'dark-theme' ){
+    if (this.selectedTheme === 'dark-theme') {
       this.settings.setActiveTheme('light-theme');
     } else {
       this.settings.setActiveTheme('dark-theme');
