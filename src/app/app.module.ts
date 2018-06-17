@@ -30,6 +30,7 @@ import { ComponentsModule } from '../components/components.module';
 import { ChatProvider } from '../providers/chat/chat';
 import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
 import { SettingsProvider } from '../providers/settings/settings';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { SettingsProvider } from '../providers/settings/settings';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     RestProvider,
     ChatProvider,
-    SettingsProvider
+    SettingsProvider,
+    Camera
   ]
 })
 export class AppModule {}

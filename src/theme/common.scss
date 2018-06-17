@@ -1,13 +1,17 @@
-.full-width{
+ion-app {
+  background: none transparent !important;
+}
+
+.full-width {
   width: 100%;
 }
 
-ion-list.header-list{
+ion-list.header-list {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 ion-app.ios [padding].btn-container,
-ion-app.md [padding].btn-container{    
+ion-app.md [padding].btn-container {
   padding-top: 10px;
 }

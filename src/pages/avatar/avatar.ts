@@ -33,7 +33,7 @@ declare var cordova: any; // import third part js lib
   selector: 'page-avatar',
   templateUrl: 'avatar.html',
   providers: [
-    Camera, FileTransfer, File, FilePath
+    FileTransfer, File, FilePath
   ]
 })
 export class AvatarPage extends BaseUI {
