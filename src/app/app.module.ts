@@ -20,6 +20,7 @@ import { AnswerPage } from '../pages/answer/answer';
 import { ChatDetailPage } from '../pages/chat-detail/chat-detail';
 import { UserFeedsPage } from '../pages/user-feeds/user-feeds';
 import { ScanQrcodePage } from '../pages/scan-qrcode/scan-qrcode';
+import { VersionsPage } from '../pages/versions/versions';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,6 +32,7 @@ import { ChatProvider } from '../providers/chat/chat';
 import { RelativeTimePipe } from '../pipes/relative-time/relative-time';
 import { SettingsProvider } from '../providers/settings/settings';
 import { Camera } from '@ionic-native/camera';
+import { AppVersion } from '@ionic-native/app-version';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { Camera } from '@ionic-native/camera';
     ChatDetailPage,
     RelativeTimePipe,
     UserFeedsPage,
-    ScanQrcodePage
+    ScanQrcodePage,
+    VersionsPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ import { Camera } from '@ionic-native/camera';
     AnswerPage,
     ChatDetailPage,
     UserFeedsPage,
-    ScanQrcodePage
+    ScanQrcodePage,
+    VersionsPage
   ],
   providers: [
     StatusBar,
@@ -89,7 +93,8 @@ import { Camera } from '@ionic-native/camera';
     RestProvider,
     ChatProvider,
     SettingsProvider,
-    Camera
+    Camera,
+    AppVersion
   ]
 })
 export class AppModule {}

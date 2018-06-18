@@ -9,6 +9,7 @@ import { UserPage } from '../user/user';
 import { UserFeedsPage } from '../user-feeds/user-feeds';
 import { SettingsProvider } from '../../providers/settings/settings';
 import { ScanQrcodePage } from '../scan-qrcode/scan-qrcode';
+import { VersionsPage } from '../versions/versions';
 
 /**
  * Generated class for the MorePage page.
@@ -97,6 +98,10 @@ export class MorePage extends BaseUI {
     } else {
       this.settings.setActiveTheme('dark-theme');
     }
+  }
+
+  pushVersionsPage() {
+    this.navCtrl.push(VersionsPage);
   }
 
 }
